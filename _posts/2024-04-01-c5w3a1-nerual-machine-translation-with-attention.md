@@ -18,20 +18,6 @@ Welcome to your first programming assignment for this week!
 This notebook was produced together with NVIDIA's Deep Learning Institute. 
 
 
-## Table of Contents
-
-- [Packages](#0)
-- [1 - Translating Human Readable Dates Into Machine Readable Dates](#1)
-    - [1.1 - Dataset](#1-1)
-- [2 - Neural Machine Translation with Attention](#2)
-    - [2.1 - Attention Mechanism](#2-1)
-        - [Exercise 1 - one_step_attention](#ex-1)
-        - [Exercise 2 - modelf](#ex-2)
-        - [Exercise 3 - Compile the Model](#ex-3)
-- [3 - Visualizing Attention (Optional / Ungraded)](#3)
-    - [3.1 - Getting the Attention Weights From the Network](#3-1)
-
-<a name='0'></a>
 ## Packages
 
 
@@ -59,7 +45,6 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 ```
 
-<a name='1'></a>
 ## 1 - Translating Human Readable Dates Into Machine Readable Dates
 
 * The model you will build here could be used to translate from one language to another, such as translating from English to Hindi. 
@@ -72,7 +57,6 @@ import matplotlib.pyplot as plt
 <!-- 
 Take a look at [nmt_utils.py](./nmt_utils.py) to see all the formatting. Count and figure out how the formats work, you will need this knowledge later. !--> 
 
-<a name='1-1'></a>
 ### 1.1 - Dataset
 
 We will train the model on a dataset of 10,000 human readable dates and their equivalent, standardized, machine readable dates. Let's run the following cells to load the dataset and print some examples. 
@@ -197,14 +181,12 @@ print("Target after preprocessing (one-hot):", Yoh[index])
      [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]]
 
 
-<a name='2'></a>
 ## 2 - Neural Machine Translation with Attention
 
 * If you had to translate a book's paragraph from French to English, you would not read the whole paragraph, then close the book and translate. 
 * Even during the translation process, you would read/re-read and focus on the parts of the French paragraph corresponding to the parts of the English you are writing down. 
 * The attention mechanism tells a Neural Machine Translation model where it should pay attention to at any step. 
 
-<a name='2-1'></a>
 ### 2.1 - Attention Mechanism
 
 In this part, you will implement the attention mechanism presented in the lecture videos. 
@@ -215,10 +197,10 @@ In this part, you will implement the attention mechanism presented in the lectur
 
 <table>
 <td> 
-<img src="attn_model.png" style="width:500;height:500px;"> <br>
+<img src="attn_model.png" style="width:500;height:500px;" alt="attention model"> <br>
 </td> 
 <td> 
-<img src="attn_mechanism.png" style="width:500;height:500px;"> <br>
+<img src="attn_mechanism.png" style="width:500;height:500px;" alt="attention mechanism"> <br>
 </td> 
 </table>
 <caption><center> **Figure 1**: Neural machine translation with attention</center></caption>
@@ -286,7 +268,6 @@ $$context^{<t>} = \sum_{t' = 1}^{T_x} \alpha^{<t,t'>}a^{<t'>}\tag{1}$$
 - In the assignment, we are calling the context $context^{\langle t \rangle}$.
     - This is to avoid confusion with the post-attention LSTM's internal memory cell variable, which is also denoted $c^{\langle t \rangle}$.
 
-<a name='ex-1'></a>
 ### Exercise 1 - one_step_attention 
 
 Implement `one_step_attention()`. 
@@ -400,7 +381,6 @@ one_step_attention_test(one_step_attention)
     [92mAll tests passed!
 
 
-<a name='ex-2'></a>
 ### Exercise 2 - modelf
 
 Implement `modelf()` as explained in figure 1 and the instructions:
@@ -817,7 +797,6 @@ Here is the summary you should see
 </table>
 
 
-<a name='ex-3'></a>
 ### Exercise 3 - Compile the Model
 
 * After creating your model in Keras, you need to compile it and define the loss function, optimizer and metrics you want to use. 
@@ -894,7 +873,7 @@ model.fit([Xoh, s0, c0], outputs, epochs=1, batch_size=100)
 
 While training you can see the loss as well as the accuracy on each of the 10 positions of the output. The table below gives you an example of what the accuracies could be if the batch had 2 examples: 
 
-<img src="table.png" style="width:700;height:200px;"> <br>
+<img src="table.png" style="width:700;height:200px;" alt="table"> <br>
 <caption><center>Thus, <mark> dense_2_8_accuracy: 0.89 </mark> means that you are predicting the 9th character of the output correctly 89% of the time in the current batch of data. </center></caption>
 
 
@@ -953,19 +932,17 @@ for example in EXAMPLES:
 
 You can also change these examples to test with your own examples. The next part will give you a better sense of what the attention mechanism is doing--i.e., what part of the input the network is paying attention to when generating a particular output character. 
 
-<a name='3'></a>
 ## 3 - Visualizing Attention (Optional / Ungraded)
 
 Since the problem has a fixed output length of 10, it is also possible to carry out this task using 10 different softmax units to generate the 10 characters of the output. But one advantage of the attention model is that each part of the output (such as the month) knows it needs to depend only on a small part of the input (the characters in the input giving the month). We can  visualize what each part of the output is looking at which part of the input.
 
 Consider the task of translating "Saturday 9 May 2018" to "2018-05-09". If we visualize the computed $\alpha^{\langle t, t' \rangle}$ we get this: 
 
-<img src="date_attention.png" style="width:600;height:300px;"> <br>
+<img src="date_attention.png" style="width:600;height:300px;" alt="date attention"> <br>
 <caption><center> **Figure 8**: Full Attention Map</center></caption>
 
 Notice how the output ignores the "Saturday" portion of the input. None of the output timesteps are paying much attention to that portion of the input. We also see that 9 has been translated as 09 and May has been correctly translated into 05, with the output paying attention to the parts of the input it needs to make the translation. The year mostly requires it to pay attention to the input's "18" in order to generate "2018." 
 
-<a name='3-1'></a>
 ### 3.1 - Getting the Attention Weights From the Network
 
 Lets now visualize the attention values in your network. We'll propagate an example through the network, then visualize the values of $\alpha^{\langle t, t' \rangle}$. 

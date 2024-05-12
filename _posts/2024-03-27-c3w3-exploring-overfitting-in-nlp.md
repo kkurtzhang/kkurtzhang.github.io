@@ -718,11 +718,11 @@ Although a flat `val_loss` and a lowering `train_loss` (or just `loss`) also ind
 
 With this in mind, the following three curves will be acceptable solutions:
 
-<table><tr><td><img src='valid-1.png'></td><td><img src='valid-2.jpg'></td><td><img src='valid-3.jpg'></td></tr></table>
+<table><tr><td><img src='valid-1.png' alt="valid solution 1"></td><td><img src='valid-2.jpg' alt="valid solution 2"></td><td><img src='valid-3.jpg' alt="valid solution 3"></td></tr></table>
 
 While the following would not be able to pass the grading:
 
-<table><tr><td><img src='invalid-1.jpg'></td></tr></table>
+<table><tr><td><img src='invalid-1.jpg' alt="invalid solution 1"></td></tr></table>
 
 Run the following cell to check your loss curves:
 
