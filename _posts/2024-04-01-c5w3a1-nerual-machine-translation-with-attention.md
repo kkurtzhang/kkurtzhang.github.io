@@ -4,7 +4,7 @@ title: 'C5W3A1: Nerual Machine Translation with Attention'
 date: 2024-04-01 17:20 +1100
 category: [DeepLearning.AI Courses, Deep Learning Specialization]
 tags: [DeepLearning, Sequence Models]
-img_path: /assets/imgs/DLS/C5W3_Assignment/
+media_subpath: /DLS/C5W3_Assignment/
 math: true
 ---
 

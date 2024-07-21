@@ -4,7 +4,7 @@ title: 'C3W3: Exploring Overfitting in NLP'
 date: 2024-03-27 20:14 +1100
 category: [DeepLearning.AI Courses, Tensorflow Dev Cert]
 tags: [NLP, LSTM]
-img_path: /assets/imgs/C3W3_Assignment_files/
+media_subpath: /DLS/C3W3_Assignment_files/
 ---
 
 # Week 3: Exploring Overfitting in NLP
